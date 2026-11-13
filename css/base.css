@@ -1,0 +1,85 @@
+/* ========== 1. FONTES ========== */
+
+@font-face {
+    font-family: 'PrivetDrive';
+    src: url('../font/privet-drive.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('../font/eb-garamond.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HarryP';
+    src: url('../font/harry-p.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ========== 2. VARIÁVEIS GLOBAIS ========== */
+
+:root {
+    --noite: #111b32;
+    --noite-profunda: #080f20;
+    --ouro: #d9b86d;
+    --ouro-claro: #f1dca4;
+    --papel: #f7e9c6;
+    --tinta: #3d3029;
+
+    --serif: Georgia, "Times New Roman", serif;
+}
+
+/* ========== 3. RESET E ESTRUTURA GLOBAL ========== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    color: #f3ecdb;
+
+    background:
+        radial-gradient(ellipse at 50% 42%,
+            rgba(72, 82, 135, 0.38),
+            transparent 52%),
+        radial-gradient(circle at 12% 82%,
+            rgba(110, 83, 151, 0.17),
+            transparent 35%),
+        linear-gradient(145deg,
+            var(--noite),
+            var(--noite-profunda));
+
+    font-family: var(--serif);
+    overflow-x: hidden;
+}
+
+/* ========== 4. ELEMENTOS GLOBAIS ========== */
+
+button {
+    font: inherit;
+}
+
+button:focus-visible {
+    outline: 3px solid var(--ouro-claro);
+    outline-offset: 6px;
+}
+
+[hidden] {
+    display: none !important;
+}

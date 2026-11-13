@@ -1,0 +1,71 @@
+/* ========== 1. CONTAINER DO FUNDO MÁGICO ========== */
+
+.fundo-magico {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ========== 2. ELEMENTOS FLUTUANTES ========== */
+
+.elemento-flutuante {
+    position: absolute;
+    top: 0;
+    left: var(--posicao);
+
+    display: grid;
+    place-items: center;
+
+    width: var(--tamanho);
+    height: var(--tamanho);
+
+    font-size: var(--tamanho);
+    line-height: 1;
+    color: var(--ouro-claro);
+
+    filter: drop-shadow(0 0 8px rgba(241, 220, 164, 0.27));
+
+    opacity: 0;
+
+    animation:
+        subir var(--duracao) linear var(--atraso) infinite;
+
+    will-change: transform;
+}
+
+/* ========== 3. IMAGENS DO CANVA ========== */
+
+.elemento-flutuante img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ========== 4. ANIMAÇÃO DE FLUTUAÇÃO ========== */
+
+@keyframes subir {
+    0% {
+        transform:
+            translate3d(0, 110vh, 0) rotate(-22deg);
+
+        opacity: 0;
+    }
+
+    12% {
+        opacity: var(--opacidade);
+    }
+
+    86% {
+        opacity: var(--opacidade);
+    }
+
+    100% {
+        transform:
+            translate3d(var(--desvio), -18vh, 0) rotate(24deg);
+
+        opacity: 0;
+    }
+}

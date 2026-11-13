@@ -1,0 +1,76 @@
+/* ========== 1. DISPOSITIVOS MÓVEIS ========== */
+
+@media (max-width: 520px) {
+
+    /* Estrutura geral */
+
+    .site {
+        padding: 32px 14px;
+    }
+
+    /* Textos da tela inicial */
+
+    .etiqueta {
+        font-size: 0.65rem;
+        letter-spacing: 0.16em;
+    }
+
+    .subtitulo {
+        font-size: 0.94rem;
+    }
+
+    /* Envelope */
+
+    .botao-envelope {
+        margin-top: 54px;
+        margin-bottom: 32px;
+    }
+
+    /* Pergaminho */
+
+    .pergaminho {
+        min-height: 425px;
+    }
+
+    /* Texto da carta */
+
+    .pagina p:not(.pagina-etiqueta) {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    /* Navegação entre páginas */
+
+    .navegacao {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .contador {
+        order: -1;
+        flex-basis: 100%;
+        margin-bottom: 4px;
+        text-align: center;
+    }
+
+    .botao-navegacao {
+        min-width: 0;
+        flex: 1;
+    }
+}
+
+/* ========== 2. ACESSIBILIDADE ========== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .elemento-flutuante {
+        display: none;
+    }
+}
