@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111b32">
+  <meta name="description" content="Uma carta mágica interativa, feita com carinho.">
+  <title>Uma Carta Mágica</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Os símbolos sobem atrás da carta. O JavaScript os cria aqui. -->
+  <div id="fundo-magico" class="fundo-magico" aria-hidden="true"></div>
+
+  <main class="site">
+    <!-- TELA 1: o envelope fechado -->
+    <section id="inicio" class="inicio" aria-labelledby="titulo-inicio">
+      <p class="etiqueta">✦ Uma correspondência extraordinária ✦</p>
+      <h1 id="titulo-inicio">Uma carta chegou para você</h1>
+      <p class="subtitulo">Algumas mensagens precisam de um pouco de magia para serem entregues.</p>
+
+      <button id="abrir-carta" class="botao-envelope" type="button" aria-label="Abrir a carta mágica">
+        <span class="envelope" aria-hidden="true">
+          <span class="envelope-costas"></span>
+          <span class="envelope-papel"><span>✦</span></span>
+          <span class="envelope-bolso"></span>
+          <span class="envelope-aba"></span>
+          <span class="envelope-selo">✦</span>
+        </span>
+      </button>
+
+      <p class="dica">Clique no envelope para abrir</p>
+    </section>
+
+    <!-- TELA 2: o pergaminho com as páginas -->
+    <section id="leitura" class="leitura" aria-label="Carta aberta" hidden>
+      <div class="barra-superior">
+        <span class="barra-simbolo" aria-hidden="true">✧</span>
+        <button id="fechar-carta" class="botao-fechar" type="button" aria-label="Fechar a carta">
+          <span aria-hidden="true">✕</span> Fechar carta
+        </button>
+      </div>
+
+      <div class="pergaminho">
+        <div class="ornamento" aria-hidden="true">✦ ❧ ✦</div>
+
+        <!-- Para adicionar outra página, copie um <article class="pagina">. -->
+        <article class="pagina" data-pagina="1" aria-labelledby="titulo-pagina-1">
+          <p class="pagina-etiqueta">Uma mensagem especial</p>
+          <h2 id="titulo-pagina-1">Olá, pessoa extraordinária!</h2>
+          <p>Esta não é uma carta comum. Ela atravessou lugares improváveis para chegar até você.</p>
+          <p>Talvez o mundo pareça igual ao de sempre, mas algumas histórias começam justamente quando menos esperamos.</p>
+          <p>Vire a página. Há mais coisas que eu gostaria de contar.</p>
+        </article>
+
+        <article class="pagina" data-pagina="2" aria-labelledby="titulo-pagina-2" hidden>
+          <p class="pagina-etiqueta">Capítulo dois</p>
+          <h2 id="titulo-pagina-2">A magia está nos detalhes</h2>
+          <p>Existem pequenos encantamentos escondidos nos dias comuns: uma risada inesperada, uma amizade verdadeira, uma lembrança que aquece o coração.</p>
+          <p>E, às vezes, a maior magia é encontrar coragem para escrever a própria história.</p>
+        </article>
+
+        <article class="pagina" data-pagina="3" aria-labelledby="titulo-pagina-3" hidden>
+          <p class="pagina-etiqueta">Último capítulo</p>
+          <h2 id="titulo-pagina-3">O próximo capítulo é seu</h2>
+          <p>Que você nunca perca a curiosidade, a coragem de recomeçar e a capacidade de se encantar.</p>
+          <p>Se esta carta fez você sorrir, então ela já cumpriu sua missão.</p>
+          <p class="assinatura">Com carinho,<br>Seu nome aqui ✧</p>
+        </article>
+
+        <div class="ornamento ornamento-inferior" aria-hidden="true">✦ ❧ ✦</div>
+      </div>
+
+      <nav class="navegacao" aria-label="Navegação entre páginas da carta">
+        <button id="anterior" class="botao-navegacao" type="button" disabled>← Anterior</button>
+        <span id="contador" class="contador" aria-live="polite">Página 1 de 3</span>
+        <button id="proxima" class="botao-navegacao" type="button">Próxima →</button>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>

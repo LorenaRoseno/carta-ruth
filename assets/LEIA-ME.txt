@@ -1,0 +1,17 @@
+Coloque aqui as imagens PNG exportadas do Canva (de preferência com fundo transparente).
+
+Exemplos de nomes:
+- pomo-de-ouro.png
+- coruja.png
+- vassoura.png
+- raio.png
+- pergaminho.png
+
+Para inserir no fundo, abra script.js e edite o campo "imagem":
+{ simbolo: "⚡", imagem: "assets/raio.png" }
+
+Se "imagem" estiver vazio, o site mostra o símbolo no lugar do PNG.
+
+Dica: use imagens leves e com tamanho aproximado de 128 a 300 pixels
+para elementos decorativos. No Canva, recursos de Harry Potter podem ter
+restrições de licença, especialmente para uso comercial ou publicação.
