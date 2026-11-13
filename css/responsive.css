@@ -1,3 +1,4 @@
+
 /* ========== 1. DISPOSITIVOS MÓVEIS ========== */
 
 @media (max-width: 520px) {
@@ -5,8 +6,105 @@
     /* Estrutura geral */
 
     .site {
-        padding: 32px 14px;
+        padding: 12px;
     }
+
+    /* Textos da tela inicial */
+
+    .etiqueta {
+        font-size: 0.65rem;
+        letter-spacing: 0.16em;
+    }
+
+    .subtitulo {
+        font-size: 0.94rem;
+    }
+
+    /* Envelope */
+
+    .botao-envelope {
+        margin-top: 54px;
+        margin-bottom: 32px;
+    }
+
+    /* Área de leitura */
+
+    .leitura {
+        width: min(
+            100%,
+            450px,
+            calc((100dvh - 140px) * 0.5625)
+        );
+        margin-inline: auto;
+    }
+
+    /* Barra superior */
+
+    .barra-superior {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    /* Pergaminho */
+
+    .pergaminho {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 9 / 16;
+
+        padding: 16px 18px;
+    }
+
+    /* Texto da carta */
+
+    .pagina {
+        font-size: 1.05rem;
+        line-height: 1.65;
+    }
+
+    .pagina p:not(.pagina-etiqueta) {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    /* Navegação entre páginas */
+
+    .navegacao {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    /* Contador de páginas */
+
+    .contador {
+        order: 0;
+        flex-basis: auto;
+        margin-bottom: 0;
+
+        font-size: 0.75rem;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    /* Botões anterior e próxima */
+
+    .botao-navegacao {
+        flex: 1;
+        min-width: 0;
+
+        padding: 9px 5px;
+        font-size: 0.75rem;
+    }
+}
+
 
     /* Textos da tela inicial */
 
