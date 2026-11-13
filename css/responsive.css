@@ -29,10 +29,18 @@
     /* Pergaminho */
 
     .pergaminho {
-        min-height: 425px;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 9 / 16;
     }
 
+
     /* Texto da carta */
+    .pagina {
+        font-size: 1.05rem;
+        line-height: 1.65;
+    }
 
     .pagina p:not(.pagina-etiqueta) {
         font-size: 0.98rem;

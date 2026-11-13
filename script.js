@@ -68,9 +68,9 @@ musicaCarta.volume = 0.3;
 let estado = "fechada";
 
 
+
 function abrirCarta() {
   if (estado !== "fechada") return;
-
 
   musicaCarta.currentTime = 0;
   musicaCarta.volume = 0;
@@ -79,14 +79,11 @@ function abrirCarta() {
     console.warn("Não foi possível iniciar a música:", erro);
   });
 
-
   estado = "abrindo";
   botaoAbrir.disabled = true;
 
-  // Verifica se o envelope já estava virado.
   const jaVirado = inicio.classList.contains("virado");
 
-  // Garante que o verso apareça antes da abertura.
   inicio.classList.add("virado");
 
   const tempoGiro = movimentoReduzido.matches || jaVirado
@@ -94,7 +91,6 @@ function abrirCarta() {
     : 850;
 
   window.setTimeout(() => {
-    // Abre a aba e retira o papel.
     inicio.classList.add("abrindo");
 
     const tempoAbertura = movimentoReduzido.matches
@@ -106,18 +102,24 @@ function abrirCarta() {
       leitura.hidden = false;
       leitura.classList.add("entrando");
 
-
       musicaCarta.currentTime = 0;
       musicaCarta.volume = 0.3;
 
-
       estado = "aberta";
-      atualizarPagina(0);
+
+      // Começa a leitura pela primeira página.
+      paginaAtual = 0;
+
+      // Calcula as páginas depois que o pergaminho aparece.
+      calcularPaginas();
+
       botaoFechar.focus();
+
     }, tempoAbertura);
 
   }, tempoGiro);
 }
+
 
 
 function fecharCarta() {
@@ -191,35 +193,141 @@ botaoAbrir.addEventListener("click", () => {
 
 botaoFechar.addEventListener("click", fecharCarta);
 
+
 /* ========== 3. PÁGINAS E BOTÕES ========== */
-const paginas = [...document.querySelectorAll(".pagina")];
+
+const conteudoPaginado = document.querySelector("#conteudo-paginado");
 const botaoAnterior = document.querySelector("#anterior");
 const botaoProxima = document.querySelector("#proxima");
 const contador = document.querySelector("#contador");
+
 let paginaAtual = 0;
+let totalPaginas = 1;
+let posicoesPaginas = [0];
 
-function atualizarPagina(numero) {
-  if (numero < 0 || numero >= paginas.length) return;
-  paginaAtual = numero;
 
-  paginas.forEach((pagina, indice) => {
-    pagina.hidden = indice !== paginaAtual;
+/* Calcula quantas páginas o texto ocupa */
+
+
+
+function calcularPaginas() {
+  const largura = conteudoPaginado.clientWidth;
+
+  if (largura === 0) return;
+
+  // Define a largura da coluna conforme o espaço disponível.
+  conteudoPaginado.style.columnWidth = `${largura}px`;
+
+  // Volta ao início antes de medir as posições.
+  conteudoPaginado.scrollLeft = 0;
+
+  const origem = conteudoPaginado.getBoundingClientRect().left;
+
+  const posicoes = new Set([0]);
+
+  // Identifica todos os capítulos da carta.
+  const capitulos = conteudoPaginado.querySelectorAll(".pagina");
+
+  capitulos.forEach((capitulo) => {
+    // Um capítulo pode ocupar várias colunas.
+    const fragmentos = capitulo.getClientRects();
+
+    for (const fragmento of fragmentos) {
+      if (fragmento.width === 0 || fragmento.height === 0) {
+        continue;
+      }
+
+      // Mede a posição real de cada fragmento.
+      const posicao = Math.round(fragmento.left - origem);
+
+      if (posicao >= 0) {
+        posicoes.add(posicao);
+      }
+    }
   });
 
-  contador.textContent = `Página ${paginaAtual + 1} de ${paginas.length}`;
-  botaoAnterior.disabled = paginaAtual === 0;
-  botaoProxima.disabled = paginaAtual === paginas.length - 1;
+  // Ordena as posições da primeira até a última página.
+  posicoesPaginas = [...posicoes].sort((a, b) => a - b);
+
+  totalPaginas = posicoesPaginas.length;
+
+  // Garante que a página atual continue válida.
+  paginaAtual = Math.min(paginaAtual, totalPaginas - 1);
+
+  atualizarPagina(paginaAtual);
 }
 
-botaoAnterior.addEventListener("click", () => atualizarPagina(paginaAtual - 1));
-botaoProxima.addEventListener("click", () => atualizarPagina(paginaAtual + 1));
 
-// Bônus: as setas do teclado também viram as páginas.
+
+/* Exibe a página escolhida */
+
+
+function atualizarPagina(numero) {
+  if (numero < 0 || numero >= totalPaginas) return;
+
+  paginaAtual = numero;
+
+  // Usa a posição real da página calculada pelo navegador.
+  const deslocamento = posicoesPaginas[paginaAtual];
+
+  // Alinha o início da página à esquerda do pergaminho.
+  conteudoPaginado.scrollLeft = deslocamento;
+
+  // Atualiza o contador.
+  contador.textContent =
+    `Página ${paginaAtual + 1} de ${totalPaginas}`;
+
+  // Controla os botões de navegação.
+  botaoAnterior.disabled = paginaAtual === 0;
+  botaoProxima.disabled = paginaAtual === totalPaginas - 1;
+}
+
+
+/* Navegação pelos botões */
+
+botaoAnterior.addEventListener("click", () => {
+  atualizarPagina(paginaAtual - 1);
+});
+
+botaoProxima.addEventListener("click", () => {
+  atualizarPagina(paginaAtual + 1);
+});
+
+
+/* Navegação pelo teclado */
+
 document.addEventListener("keydown", (evento) => {
   if (estado !== "aberta") return;
-  if (evento.key === "ArrowRight") atualizarPagina(paginaAtual + 1);
-  if (evento.key === "ArrowLeft") atualizarPagina(paginaAtual - 1);
-  if (evento.key === "Escape") fecharCarta();
+
+  if (evento.key === "ArrowRight") {
+    atualizarPagina(paginaAtual + 1);
+  }
+
+  if (evento.key === "ArrowLeft") {
+    atualizarPagina(paginaAtual - 1);
+  }
+
+  if (evento.key === "Escape") {
+    fecharCarta();
+  }
+});
+
+
+/* Recalcula quando a janela muda de tamanho */
+
+window.addEventListener("resize", () => {
+  if (estado === "aberta") {
+    calcularPaginas();
+  }
+});
+
+
+/* Recalcula depois que as fontes terminam de carregar */
+
+document.fonts.ready.then(() => {
+  if (estado === "aberta") {
+    calcularPaginas();
+  }
 });
 
 /* ========== 4. INICIAR O SITE ========== */

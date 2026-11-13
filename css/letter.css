@@ -1,7 +1,8 @@
+
 /* ========== 1. ÁREA DE LEITURA ========== */
 
 .leitura {
-    width: min(100%, 690px);
+    width: min(100%, 450px);
 }
 
 .leitura.entrando {
@@ -11,12 +12,12 @@
 @keyframes surgir {
     from {
         opacity: 0;
-        transform: translateY(30px) scale(0.96);
+        transform: translateY(30px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
     }
 }
 
@@ -55,28 +56,43 @@
 
 .pergaminho {
     position: relative;
-    min-height: 465px;
 
-    padding:
-        clamp(30px, 6vw, 54px) clamp(25px, 7vw, 70px) 35px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 24px 28px 22px;
+
+    display: flex;
+    flex-direction: column;
 
     color: var(--tinta);
 
     background:
-        radial-gradient(ellipse at 15% 10%,
+        radial-gradient(
+            ellipse at 15% 10%,
             rgba(151, 101, 46, 0.09),
-            transparent 42%),
-        radial-gradient(ellipse at 90% 85%,
+            transparent 42%
+        ),
+        radial-gradient(
+            ellipse at 90% 85%,
             rgba(157, 96, 40, 0.12),
-            transparent 38%),
-        repeating-linear-gradient(0deg,
+            transparent 38%
+        ),
+        repeating-linear-gradient(
+            0deg,
             rgba(97, 66, 32, 0.018) 0,
             rgba(97, 66, 32, 0.018) 1px,
             transparent 1px,
-            transparent 5px),
-        linear-gradient(145deg,
+            transparent 5px
+        ),
+        linear-gradient(
+            145deg,
             #fff2cf 0%,
-            #f2ddaf 100%);
+            #f2ddaf 100%
+        );
 
     border: 1px solid rgba(125, 85, 42, 0.6);
     border-radius: 6px;
@@ -84,9 +100,30 @@
     box-shadow:
         inset 0 0 34px rgba(128, 86, 36, 0.17),
         0 18px 55px rgba(0, 0, 0, 0.42);
+
+    overflow: hidden;
 }
 
-/* Moldura interna do pergaminho */
+/* ========== 4. CONTEÚDO PAGINADO ========== */
+
+
+.conteudo-paginado {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+
+    column-width: 550px;
+    column-gap: 40px;
+    column-fill: auto;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    scroll-behavior: auto;
+}
+
+
+/* ========== 5. MOLDURA INTERNA ========== */
 
 .pergaminho::before {
     content: "";
@@ -100,39 +137,54 @@
     pointer-events: none;
 }
 
-/* ========== 4. ORNAMENTOS ========== */
+/* ========== 6. ORNAMENTOS ========== */
 
 .ornamento {
     color: #956c3e;
     font-size: 1.25rem;
     text-align: center;
     letter-spacing: 0.6em;
+
+    flex-shrink: 0;
 }
 
 .ornamento-inferior {
     margin-top: 25px;
 }
 
-/* ========== 5. PÁGINAS DA CARTA ========== */
+/* ========== 7. CAPÍTULOS DA CARTA ========== */
 
 .pagina {
-    font-family: 'EBGaramond', Georgia, serif;
-    animation: trocar-pagina 0.32s ease both;
+    font-family: "EBGaramond", Georgia, serif;
+
+    break-inside: auto;
+    overflow: visible;
 }
 
-@keyframes trocar-pagina {
-    from {
-        opacity: 0;
-        transform: translateX(12px);
-    }
+/* Cada novo capítulo começa em uma nova coluna */
 
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.conteudo-paginado > .pagina:not(:first-child) {
+    break-before: column;
+    margin-top: 0;
 }
 
-/* Identificação da página */
+
+
+/* Evita separar títulos do conteúdo seguinte */
+
+.pagina h2,
+.pagina h3 {
+    break-after: avoid-column;
+}
+
+/* Evita linhas isoladas no início ou fim de uma página */
+
+.pagina p {
+    orphans: 2;
+    widows: 2;
+}
+
+/* ========== 8. IDENTIFICAÇÃO DO CAPÍTULO ========== */
 
 .pagina-etiqueta {
     margin: 24px 0 14px;
@@ -145,7 +197,8 @@
     text-transform: uppercase;
 }
 
-/* Título da página */
+
+/* ========== 9. TÍTULOS DOS CAPÍTULOS ========== */
 
 .pagina h2 {
     margin: 0 0 24px;
@@ -159,15 +212,17 @@
     text-wrap: balance;
 }
 
-/* Parágrafos da carta */
+
+/* ========== 10. PARÁGRAFOS ========== */
 
 .pagina p:not(.pagina-etiqueta) {
     margin: 0 0 18px;
-    font-size: 1.06rem;
-    line-height: 1.82;
+
+    font-size: 1.28rem;
+    line-height: 1.7;
 }
 
-/* Assinatura */
+/* ========== 11. ASSINATURAS ========== */
 
 .pagina .assinatura {
     padding-top: 16px;
@@ -177,7 +232,8 @@
     text-align: right;
 }
 
-/* ========== 6. NAVEGAÇÃO ENTRE PÁGINAS ========== */
+
+/* ========== 12. NAVEGAÇÃO ENTRE PÁGINAS ========== */
 
 .navegacao {
     display: flex;
@@ -215,10 +271,80 @@
     cursor: not-allowed;
 }
 
-/* Indicador da página atual */
+
+/* ========== 13. CONTADOR DE PÁGINAS ========== */
 
 .contador {
     color: #d0c7b5;
     font-size: 0.88rem;
     white-space: nowrap;
 }
+
+
+/* ========== 14. MENSAGENS DOS IRMÃOS ========== */
+
+.mensagem-extra {
+    font-family: "EBGaramond", Georgia, serif;
+
+    font-size: 1.1rem;
+    line-height: 1.7;
+
+    margin-block: 2rem;
+    padding-bottom: 1rem;
+}
+
+.mensagem-extra h3 {
+    color: var(--vinho-grifinoria);
+    font-family: "EBGaramond", Georgia, serif;
+
+    text-align: center;
+    font-size: 1.4rem;
+
+    margin-bottom: 1.5rem;
+}
+
+.mensagem-extra .assinatura {
+    text-align: right;
+    font-style: italic;
+
+    color: var(--vinho-grifinoria);
+    margin-top: 1.5rem;
+}
+
+
+/* ========== 15. VÍDEO FINAL ========== */
+
+.video-final {
+    display: block;
+
+    width: 100%;
+    height: 0;
+    min-height: 0;
+    flex: 1;
+
+    margin: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    box-shadow: none;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.pagina:has(.video-final) {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    break-inside: avoid-column;
+    overflow: hidden;
+}
+
+
