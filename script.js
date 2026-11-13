@@ -120,8 +120,6 @@ function abrirCarta() {
   }, tempoGiro);
 }
 
-
-
 function fecharCarta() {
   if (estado !== "aberta") return;
 
@@ -137,7 +135,6 @@ function fecharCarta() {
   estado = "fechada";
   botaoAbrir.focus();
 }
-
 
 /* ========== INTERAÇÃO COM O ENVELOPE ========== */
 
@@ -205,62 +202,65 @@ let paginaAtual = 0;
 let totalPaginas = 1;
 let posicoesPaginas = [0];
 
-
 /* Calcula quantas páginas o texto ocupa */
-
-
 
 function calcularPaginas() {
   const largura = conteudoPaginado.clientWidth;
 
   if (largura === 0) return;
 
-  // Define a largura da coluna conforme o espaço disponível.
+  // Cada coluna ocupa a largura disponível.
   conteudoPaginado.style.columnWidth = `${largura}px`;
 
-  // Volta ao início antes de medir as posições.
+  // Volta ao início para medir o conteúdo.
   conteudoPaginado.scrollLeft = 0;
 
-  const origem = conteudoPaginado.getBoundingClientRect().left;
+  // Obtém o espaçamento entre as colunas.
+  const estilos = getComputedStyle(conteudoPaginado);
+  const espacamento = parseFloat(estilos.columnGap) || 0;
 
-  const posicoes = new Set([0]);
+  // Usa a largura real, incluindo casas decimais.
+  const larguraReal =
+    conteudoPaginado.getBoundingClientRect().width;
 
-  // Identifica todos os capítulos da carta.
-  const capitulos = conteudoPaginado.querySelectorAll(".pagina");
+  const passo = larguraReal + espacamento;
 
-  capitulos.forEach((capitulo) => {
-    // Um capítulo pode ocupar várias colunas.
-    const fragmentos = capitulo.getClientRects();
+  // O vídeo é o último conteúdo da carta.
+  const ultimoConteudo =
+    conteudoPaginado.querySelector("#video-final");
 
-    for (const fragmento of fragmentos) {
-      if (fragmento.width === 0 || fragmento.height === 0) {
-        continue;
-      }
+  if (!ultimoConteudo) return;
 
-      // Mede a posição real de cada fragmento.
-      const posicao = Math.round(fragmento.left - origem);
+  // Localiza a coluna em que o vídeo aparece.
+  const origem =
+    conteudoPaginado.getBoundingClientRect().left;
 
-      if (posicao >= 0) {
-        posicoes.add(posicao);
-      }
-    }
-  });
+  const posicaoFinal =
+    ultimoConteudo.getBoundingClientRect().left - origem;
 
-  // Ordena as posições da primeira até a última página.
-  posicoesPaginas = [...posicoes].sort((a, b) => a - b);
+  // A coluna do vídeo será a última página.
+  totalPaginas = Math.max(
+    1,
+    Math.round(posicaoFinal / passo) + 1
+  );
 
-  totalPaginas = posicoesPaginas.length;
+  // Registra somente as posições das páginas reais.
+  posicoesPaginas = Array.from(
+    { length: totalPaginas },
+    (_, indice) => Math.round(indice * passo)
+  );
 
-  // Garante que a página atual continue válida.
-  paginaAtual = Math.min(paginaAtual, totalPaginas - 1);
+  // Impede navegar além da última página.
+  paginaAtual = Math.min(
+    paginaAtual,
+    totalPaginas - 1
+  );
 
   atualizarPagina(paginaAtual);
 }
 
 
-
 /* Exibe a página escolhida */
-
 
 function atualizarPagina(numero) {
   if (numero < 0 || numero >= totalPaginas) return;
