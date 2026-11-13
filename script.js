@@ -55,7 +55,23 @@ const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
 let estado = "fechada";
 
 function abrirCarta() {
-  if (estado !== "fechada") return;
+
+  if (estado === "fechada") {
+    estado = "girando";
+    inicio.classList.add("virado");
+
+    const tempoGiro = movimentoReduzido.matches ? 0 : 850;
+
+    window.setTimeout(() => {
+      estado = "virada";
+      botaoAbrir.setAttribute("aria-label", "Abrir o envelope");
+    }, tempoGiro);
+
+    return;
+  }
+
+  if (estado !== "virada") return;
+
 
   estado = "abrindo";
   botaoAbrir.disabled = true;
@@ -79,7 +95,8 @@ function fecharCarta() {
   leitura.hidden = true;
   leitura.classList.remove("entrando");
   inicio.hidden = false;
-  inicio.classList.remove("abrindo");
+  inicio.classList.remove("abrindo", "virado");
+  botaoAbrir.setAttribute("aria-label", "Virar o envelope");
   botaoAbrir.disabled = false;
   estado = "fechada";
   botaoAbrir.focus();

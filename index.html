@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
+
 <body>
   <!-- Os símbolos sobem atrás da carta. O JavaScript os cria aqui. -->
   <div id="fundo-magico" class="fundo-magico" aria-hidden="true"></div>
@@ -20,13 +22,29 @@
       <h1 id="titulo-inicio">Uma carta chegou para você</h1>
       <p class="subtitulo">Algumas mensagens precisam de um pouco de magia para serem entregues.</p>
 
-      <button id="abrir-carta" class="botao-envelope" type="button" aria-label="Abrir a carta mágica">
-        <span class="envelope" aria-hidden="true">
-          <span class="envelope-costas"></span>
-          <span class="envelope-papel"><span>✦</span></span>
-          <span class="envelope-bolso"></span>
-          <span class="envelope-aba"></span>
-          <span class="envelope-selo">✦</span>
+
+      <button id="abrir-carta" class="botao-envelope" type="button" aria-label="Virar o envelope">
+
+        <span class="envelope-3d" aria-hidden="true">
+
+          <!-- Frente: destinatário -->
+          <span class="envelope-frente">
+            <span class="destinatario">
+              Srta. Ruth
+              <span>Aos cuidados da magia</span>
+              <span>Onde os sonhos começam</span>
+            </span>
+          </span>
+
+          <!-- Verso: lacre e abertura -->
+          <span class="envelope envelope-verso">
+            <span class="envelope-costas"></span>
+            <span class="envelope-papel"><span>✦</span></span>
+            <span class="envelope-bolso"></span>
+            <span class="envelope-aba"></span>
+            <span class="envelope-selo">✦</span>
+          </span>
+
         </span>
       </button>
 
@@ -50,14 +68,16 @@
           <p class="pagina-etiqueta">Uma mensagem especial</p>
           <h2 id="titulo-pagina-1">Olá, pessoa extraordinária!</h2>
           <p>Esta não é uma carta comum. Ela atravessou lugares improváveis para chegar até você.</p>
-          <p>Talvez o mundo pareça igual ao de sempre, mas algumas histórias começam justamente quando menos esperamos.</p>
+          <p>Talvez o mundo pareça igual ao de sempre, mas algumas histórias começam justamente quando menos esperamos.
+          </p>
           <p>Vire a página. Há mais coisas que eu gostaria de contar.</p>
         </article>
 
         <article class="pagina" data-pagina="2" aria-labelledby="titulo-pagina-2" hidden>
           <p class="pagina-etiqueta">Capítulo dois</p>
           <h2 id="titulo-pagina-2">A magia está nos detalhes</h2>
-          <p>Existem pequenos encantamentos escondidos nos dias comuns: uma risada inesperada, uma amizade verdadeira, uma lembrança que aquece o coração.</p>
+          <p>Existem pequenos encantamentos escondidos nos dias comuns: uma risada inesperada, uma amizade verdadeira,
+            uma lembrança que aquece o coração.</p>
           <p>E, às vezes, a maior magia é encontrar coragem para escrever a própria história.</p>
         </article>
 
@@ -80,4 +100,5 @@
     </section>
   </main>
 </body>
+
 </html>

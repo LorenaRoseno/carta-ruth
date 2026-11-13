@@ -1,4 +1,26 @@
 /* ========== 1. BASE E CORES ========== */
+
+@font-face {
+  font-family: 'PrivetDrive';
+  src: url('./font/privet-drive.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EBGaramond';
+  src: url('./font/eb-garamond.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HarryP';
+  src: url('./font/harry-p.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --noite: #111b32;
   --noite-profunda: #080f20;
@@ -112,7 +134,6 @@ h1 {
   filter: drop-shadow(0 18px 27px rgba(0,0,0,.43));
   transition: transform .35s ease, filter .35s ease;
 }
-.botao-envelope:hover .envelope,
 .botao-envelope:focus-visible .envelope {
   transform: translateY(-8px) rotate(-1deg);
   filter: drop-shadow(0 27px 32px rgba(0,0,0,.52));
@@ -181,6 +202,75 @@ h1 {
 .inicio.abrindo .envelope-selo { opacity: 0; }
 .botao-envelope:disabled { cursor: default; }
 .dica { margin: 0; color: #cbb780; font-size: .86rem; letter-spacing: .11em; }
+
+.envelope-frente {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e8dec2;
+  border: 1px solid #b9a783;
+  border-radius: 6px;
+
+  transition: opacity 0.35s ease;
+}
+
+.destinatario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  color: #285b3c;
+  font-family: Georgia, serif;
+  font-size: 1.7rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.destinatario span {
+  font-size: 1rem;
+}
+
+.inicio.abrindo .envelope-frente {
+  opacity: 0;
+}
+
+
+.envelope-3d {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.56;
+
+  transform-style: preserve-3d;
+  transition: transform 0.85s ease;
+}
+
+.envelope-frente,
+.envelope-verso {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.envelope-frente {
+  box-shadow: 0 18px 27px rgba(0, 0, 0, 0.43);
+}
+
+.envelope-verso {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+.inicio.virado .envelope-3d {
+  transform: rotateY(180deg);
+}
+
+
 
 /* ========== 4. CARTA ABERTA ========== */
 .leitura { width: min(100%, 690px); }
@@ -279,4 +369,28 @@ h1 {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .elemento-flutuante { display: none; }
+}
+
+
+/* Endereço do envelope */
+.destinatario,
+.destinatario span {
+  font-family: 'PrivetDrive', cursive;
+}
+
+/* Título da tela inicial */
+#titulo-inicio {
+  font-family: 'HarryP', serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 7vw, 4.5rem);
+}
+
+/* Texto da carta */
+.pagina {
+  font-family: 'EBGaramond', Georgia, serif;
+}
+
+.pagina h2,
+.pagina p {
+  font-family: 'EBGaramond', Georgia, serif;
 }
