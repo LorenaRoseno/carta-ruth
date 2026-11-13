@@ -26,16 +26,29 @@
 
 /* ========== 2. VARIÁVEIS GLOBAIS ========== */
 
-:root {
-    --noite: #111b32;
-    --noite-profunda: #080f20;
-    --ouro: #d9b86d;
-    --ouro-claro: #f1dca4;
-    --papel: #f7e9c6;
-    --tinta: #3d3029;
 
+:root {
+    /* Grifinória */
+    --noite: #240c14;
+    --noite-profunda: #09080b;
+    --vinho-grifinoria: #741b2d;
+
+    /* Dourados */
+    --ouro: #d2ac65;
+    --ouro-claro: #f2dba1;
+
+    /* Carta de Hogwarts */
+    --papel: #f2e5c9;
+    --tinta: #35271f;
+    --verde-hogwarts: #315c43;
+
+    /* Textos sobre o fundo escuro */
+    --texto-suave: #dfcdb8;
+
+    /* Fonte alternativa */
     --serif: Georgia, "Times New Roman", serif;
 }
+
 
 /* ========== 3. RESET E ESTRUTURA GLOBAL ========== */
 
@@ -52,19 +65,19 @@ body {
     min-height: 100vh;
     min-height: 100dvh;
 
-    color: #f3ecdb;
+
+    color: #f6eddc;
 
     background:
-        radial-gradient(ellipse at 50% 42%,
-            rgba(72, 82, 135, 0.38),
-            transparent 52%),
-        radial-gradient(circle at 12% 82%,
-            rgba(110, 83, 151, 0.17),
-            transparent 35%),
-        linear-gradient(145deg,
+        radial-gradient(ellipse at 50% 25%,
+            rgba(116, 27, 45, 0.60),
+            transparent 62%),
+        radial-gradient(circle at 18% 78%,
+            rgba(210, 172, 101, 0.08),
+            transparent 34%),
+        linear-gradient(160deg,
             var(--noite),
             var(--noite-profunda));
-
     font-family: var(--serif);
     overflow-x: hidden;
 }

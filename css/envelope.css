@@ -32,6 +32,7 @@
     margin: 0 auto 14px;
 
     font-family: 'HarryP', serif;
+    color: var(--ouro-claro);
     font-size: clamp(3rem, 7vw, 4.5rem);
     font-weight: 400;
     line-height: 1.13;
@@ -44,14 +45,14 @@
     max-width: 510px;
     margin: 0 auto;
 
-    color: #c7c8d2;
+    color: var(--texto-suave);
     font-size: 1.04rem;
     line-height: 1.7;
 }
 
 .dica {
     margin: 0;
-    color: #cbb780;
+    color: var(--ouro);
     font-size: 0.86rem;
     letter-spacing: 0.11em;
 }
@@ -103,22 +104,61 @@
     align-items: center;
     justify-content: center;
 
-    background: #e8dec2;
-    border: 1px solid #b9a783;
-    border-radius: 6px;
+    /* Textura e envelhecimento do papel */
+    background:
+        radial-gradient(ellipse at 12% 15%,
+            rgba(116, 75, 38, 0.16),
+            transparent 45%),
+        radial-gradient(ellipse at 90% 85%,
+            rgba(123, 87, 42, 0.18),
+            transparent 48%),
+        repeating-linear-gradient(90deg,
+            rgba(95, 65, 36, 0.015) 0px,
+            rgba(95, 65, 36, 0.015) 1px,
+            transparent 1px,
+            transparent 4px),
+        linear-gradient(135deg,
+            #f4e8cf,
+            #e1cda7);
 
-    box-shadow: 0 18px 27px rgba(0, 0, 0, 0.43);
+    border: 1px solid #ae946b;
+    border-radius: 4px;
+
+    box-shadow:
+        inset 0 0 30px rgba(106, 72, 37, 0.20),
+        0 18px 35px rgba(0, 0, 0, 0.40);
 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
+
+/* Brasão de Hogwarts na frente */
+
+.brasao-envelope {
+    position: absolute;
+    top: 9%;
+    left: 50%;
+
+    width: 15%;
+    max-width: 64px;
+    max-height: 70px;
+    height: auto;
+
+    transform: translateX(-50%);
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+
 .destinatario {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    transform: translateY(24px);
 
-    color: #285b3c;
+    color: var(--verde-hogwarts);
     font-family: 'PrivetDrive', cursive;
     font-size: 1.7rem;
     font-style: normal;
@@ -127,6 +167,8 @@
 
 .destinatario span {
     font-size: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* ========== 5. VERSO DO ENVELOPE ========== */
@@ -158,13 +200,31 @@
 
 /* Base do envelope */
 
+
 .envelope-costas {
     inset: 0;
 
-    background: #d6b68a;
-    border-radius: 7px;
+    background:
+        radial-gradient(ellipse at 12% 15%,
+            rgba(116, 75, 38, 0.16),
+            transparent 45%),
+        radial-gradient(ellipse at 90% 85%,
+            rgba(123, 87, 42, 0.18),
+            transparent 48%),
+        repeating-linear-gradient(90deg,
+            rgba(95, 65, 36, 0.015) 0px,
+            rgba(95, 65, 36, 0.015) 1px,
+            transparent 1px,
+            transparent 4px),
+        linear-gradient(135deg,
+            #f4e8cf,
+            #e1cda7);
 
-    box-shadow: inset 0 0 0 2px rgba(106, 69, 42, 0.28);
+    border: 1px solid #ae946b;
+    border-radius: 4px;
+
+    box-shadow:
+        inset 0 0 30px rgba(106, 72, 37, 0.20);
 }
 
 /* Papel que sai de dentro do envelope */
@@ -201,9 +261,15 @@
 
     border-radius: 0 0 7px 7px;
 
-    background: linear-gradient(160deg,
-            #efdbb1,
-            #b89160);
+
+    background:
+        radial-gradient(ellipse at 80% 85%,
+            rgba(116, 75, 38, 0.14),
+            transparent 60%),
+        linear-gradient(160deg,
+            #ecdbba,
+            #d2b287);
+
 
     clip-path: polygon(0 0,
             50% 57%,
@@ -233,9 +299,12 @@
     height: 61%;
     z-index: 5;
 
-    background: linear-gradient(180deg,
-            #edd5a7,
-            #c9a474);
+
+    background:
+        linear-gradient(180deg,
+            #eedec0,
+            #d7bc94);
+
 
     clip-path: polygon(0 0,
             100% 0,
@@ -249,6 +318,7 @@
 
 /* Lacre vermelho */
 
+
 .envelope-selo {
     position: absolute;
     top: 51%;
@@ -258,25 +328,38 @@
     display: grid;
     place-items: center;
 
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
 
     transform: translate(-50%, -50%);
 
-    border: 4px double rgba(255, 218, 172, 0.62);
-    border-radius: 50%;
-
-    color: #f8cfad;
-    font-size: 1.8rem;
-
-    background: radial-gradient(circle at 36% 30%,
-            #b94c50,
-            #781e2b 75%);
-
-    box-shadow: 0 4px 12px rgba(62, 21, 25, 0.43);
+    background: transparent;
+    border: none;
+    box-shadow: none;
 
     transition: opacity 0.3s;
+    pointer-events: none;
 }
+
+
+/* Símbolo impresso no lacre de cera */
+
+
+.brasao-selo {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    filter: drop-shadow(
+        0 4px 5px rgba(45, 15, 15, 0.45)
+    );
+
+    pointer-events: none;
+}
+
 
 /* ========== 6. ANIMAÇÃO DE ABERTURA ========== */
 

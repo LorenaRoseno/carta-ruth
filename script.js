@@ -30,7 +30,8 @@ function criarElementosFlutuantes() {
     elemento.style.setProperty("--duracao", `${17 + Math.random() * 18}s`);
     elemento.style.setProperty("--atraso", `${-Math.random() * 35}s`);
     elemento.style.setProperty("--desvio", `${-60 + Math.random() * 120}px`);
-    elemento.style.setProperty("--opacidade", `${0.2 + Math.random() * 0.38}`);
+    elemento.style.setProperty("--opacidade", `${0.10 + Math.random() * 0.20}`);
+
 
     if (modelo.imagem) {
       const imagem = document.createElement("img");
@@ -52,57 +53,142 @@ const botaoAbrir = document.querySelector("#abrir-carta");
 const botaoFechar = document.querySelector("#fechar-carta");
 const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+
+/* ========== MÚSICA DA CARTA ========== */
+
+const musicaCarta = new Audio(
+  "assets/song/Ninguém-Explica-Deus.mp3"
+);
+
+musicaCarta.preload = "auto";
+musicaCarta.loop = true;
+musicaCarta.volume = 0.3;
+
+
 let estado = "fechada";
 
+
 function abrirCarta() {
+  if (estado !== "fechada") return;
 
-  if (estado === "fechada") {
-    estado = "girando";
-    inicio.classList.add("virado");
 
-    const tempoGiro = movimentoReduzido.matches ? 0 : 850;
+  musicaCarta.currentTime = 0;
+  musicaCarta.volume = 0;
 
-    window.setTimeout(() => {
-      estado = "virada";
-      botaoAbrir.setAttribute("aria-label", "Abrir o envelope");
-    }, tempoGiro);
-
-    return;
-  }
-
-  if (estado !== "virada") return;
+  musicaCarta.play().catch((erro) => {
+    console.warn("Não foi possível iniciar a música:", erro);
+  });
 
 
   estado = "abrindo";
   botaoAbrir.disabled = true;
-  inicio.classList.add("abrindo");
 
-  // Aguarda a animação da aba e do papel antes de exibir o pergaminho.
-  const tempo = movimentoReduzido.matches ? 0 : 950;
+  // Verifica se o envelope já estava virado.
+  const jaVirado = inicio.classList.contains("virado");
+
+  // Garante que o verso apareça antes da abertura.
+  inicio.classList.add("virado");
+
+  const tempoGiro = movimentoReduzido.matches || jaVirado
+    ? 0
+    : 850;
+
   window.setTimeout(() => {
-    inicio.hidden = true;
-    leitura.hidden = false;
-    leitura.classList.add("entrando");
-    estado = "aberta";
-    atualizarPagina(0);
-    botaoFechar.focus();
-  }, tempo);
+    // Abre a aba e retira o papel.
+    inicio.classList.add("abrindo");
+
+    const tempoAbertura = movimentoReduzido.matches
+      ? 0
+      : 950;
+
+    window.setTimeout(() => {
+      inicio.hidden = true;
+      leitura.hidden = false;
+      leitura.classList.add("entrando");
+
+
+      musicaCarta.currentTime = 0;
+      musicaCarta.volume = 0.3;
+
+
+      estado = "aberta";
+      atualizarPagina(0);
+      botaoFechar.focus();
+    }, tempoAbertura);
+
+  }, tempoGiro);
 }
+
 
 function fecharCarta() {
   if (estado !== "aberta") return;
+
+  musicaCarta.pause();
+  musicaCarta.currentTime = 0;
 
   leitura.hidden = true;
   leitura.classList.remove("entrando");
   inicio.hidden = false;
   inicio.classList.remove("abrindo", "virado");
-  botaoAbrir.setAttribute("aria-label", "Virar o envelope");
+  botaoAbrir.setAttribute("aria-label", "Abrir a carta");
   botaoAbrir.disabled = false;
   estado = "fechada";
   botaoAbrir.focus();
 }
 
-botaoAbrir.addEventListener("click", abrirCarta);
+
+/* ========== INTERAÇÃO COM O ENVELOPE ========== */
+
+// Mouse: vira ao entrar e retorna ao sair.
+botaoAbrir.addEventListener("pointerenter", (evento) => {
+  if (evento.pointerType === "mouse" && estado === "fechada") {
+    inicio.classList.add("virado");
+  }
+});
+
+botaoAbrir.addEventListener("pointerleave", (evento) => {
+  if (evento.pointerType === "mouse" && estado === "fechada") {
+    inicio.classList.remove("virado");
+  }
+});
+
+// Toque: identifica quando o dedo desliza.
+let inicioToqueX = null;
+let deslizou = false;
+
+botaoAbrir.addEventListener("touchstart", (evento) => {
+  inicioToqueX = evento.touches[0].clientX;
+  deslizou = false;
+}, { passive: true });
+
+botaoAbrir.addEventListener("touchmove", (evento) => {
+  if (inicioToqueX === null || estado !== "fechada") return;
+
+  const distancia = Math.abs(
+    evento.touches[0].clientX - inicioToqueX
+  );
+
+  if (distancia >= 25) {
+    inicio.classList.add("virado");
+    deslizou = true;
+  }
+}, { passive: true });
+
+botaoAbrir.addEventListener("touchend", () => {
+  inicioToqueX = null;
+}, { passive: true });
+
+// Clique: abre a carta.
+// Um deslize não deve ser confundido com um clique.
+botaoAbrir.addEventListener("click", () => {
+  if (deslizou) {
+    deslizou = false;
+    return;
+  }
+
+  abrirCarta();
+});
+
 botaoFechar.addEventListener("click", fecharCarta);
 
 /* ========== 3. PÁGINAS E BOTÕES ========== */

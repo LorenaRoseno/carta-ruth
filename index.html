@@ -7,13 +7,13 @@
   <meta name="theme-color" content="#111b32">
   <meta name="description" content="Uma carta mágica interativa, feita com carinho.">
   <title>Uma Carta Mágica</title>
-  
-<!-- Estilos do site -->
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/background.css">
-<link rel="stylesheet" href="css/envelope.css">
-<link rel="stylesheet" href="css/letter.css">
-<link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Estilos do site -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/background.css">
+  <link rel="stylesheet" href="css/envelope.css">
+  <link rel="stylesheet" href="css/letter.css">
+  <link rel="stylesheet" href="css/responsive.css">
 
   <script src="script.js" defer></script>
 </head>
@@ -30,16 +30,19 @@
       <p class="subtitulo">Algumas mensagens precisam de um pouco de magia para serem entregues.</p>
 
 
-      <button id="abrir-carta" class="botao-envelope" type="button" aria-label="Virar o envelope">
+      <button id="abrir-carta" class="botao-envelope" type="button" aria-label="Abrir a carta">
 
         <span class="envelope-3d" aria-hidden="true">
 
           <!-- Frente: destinatário -->
           <span class="envelope-frente">
+
+            <img class="brasao-envelope" src="assets/hogwarts/brasao-envelope.png" alt="">
+
             <span class="destinatario">
-              Srta. Ruth
-              <span>Aos cuidados da magia</span>
-              <span>Onde os sonhos começam</span>
+              Para Srta. Ruth
+              <span>Uma mensagem</span>
+              <span>de alguém que te ama muito...</span>
             </span>
           </span>
 
@@ -49,7 +52,10 @@
             <span class="envelope-papel"><span>✦</span></span>
             <span class="envelope-bolso"></span>
             <span class="envelope-aba"></span>
-            <span class="envelope-selo">✦</span>
+            <span class="envelope-selo">
+              <img class="brasao-selo" src="assets/hogwarts/brasao-selo.png" alt="">
+            </span>
+
           </span>
 
         </span>
@@ -71,37 +77,219 @@
         <div class="ornamento" aria-hidden="true">✦ ❧ ✦</div>
 
         <!-- Para adicionar outra página, copie um <article class="pagina">. -->
+
+        <!-- PÁGINA 1 — A GAROTA QUE SOBREVIVEU -->
+
         <article class="pagina" data-pagina="1" aria-labelledby="titulo-pagina-1">
-          <p class="pagina-etiqueta">Uma mensagem especial</p>
-          <h2 id="titulo-pagina-1">Olá, pessoa extraordinária!</h2>
-          <p>Esta não é uma carta comum. Ela atravessou lugares improváveis para chegar até você.</p>
-          <p>Talvez o mundo pareça igual ao de sempre, mas algumas histórias começam justamente quando menos esperamos.
-          </p>
-          <p>Vire a página. Há mais coisas que eu gostaria de contar.</p>
+
+          <p class="pagina-etiqueta">Capítulo I</p>
+          <h2 id="titulo-pagina-1">A garota que sobreviveu</h2>
+
+          <p>Prezada Srta. Ruth,</p>
+
+          <p>No mundo bruxo, existe a história de um menino que, ainda muito jovem, conheceu uma dor que nenhuma criança
+            deveria experimentar. Ele perdeu sua família, cresceu cercado por dificuldades e, por muito tempo,
+            desconheceu o quanto sua própria existência era extraordinária. Seu nome era Harry Potter, e ele ficou
+            conhecido como <strong>o menino que sobreviveu</strong>.</p>
+
+          <p>Mas esta carta não é sobre ele. É sobre uma garota que também precisou enfrentar a escuridão muito antes de
+            ter idade para compreender por que ela existia. Uma garota cuja história não começou em Hogwarts, que nunca
+            recebeu a visita de Hagrid e que não encontrou uma passagem secreta na Plataforma Nove e Três Quartos. Ainda
+            assim, ela descobriu que existe magia mesmo fora dos livros.</p>
+
+          <p><strong>E essa garota é você.</strong></p>
+
         </article>
+
+
+        <!-- PÁGINA 2 — AS LEMBRANÇAS -->
 
         <article class="pagina" data-pagina="2" aria-labelledby="titulo-pagina-2" hidden>
-          <p class="pagina-etiqueta">Capítulo dois</p>
-          <h2 id="titulo-pagina-2">A magia está nos detalhes</h2>
-          <p>Existem pequenos encantamentos escondidos nos dias comuns: uma risada inesperada, uma amizade verdadeira,
-            uma lembrança que aquece o coração.</p>
-          <p>E, às vezes, a maior magia é encontrar coragem para escrever a própria história.</p>
+
+          <p class="pagina-etiqueta">Capítulo II</p>
+          <h2 id="titulo-pagina-2">As lembranças de um amor que permanece</h2>
+
+          <p>Harry era pequeno demais para se lembrar da voz de sua mãe, do seu cheiro ou da sensação de estar em seus
+            braços. Cresceu conhecendo o amor dela através das lembranças de outras pessoas, sem nunca ter a
+            oportunidade de conhecê-la de verdade.</p>
+
+          <p>Você teve alguns anos ao lado da sua mãe. Conheceu sua voz, seus abraços, seus costumes, seu jeito de ser.
+            Teve tempo de construir lembranças que Harry jamais pôde ter, mas também precisou conhecer uma dor que
+            nenhuma menina deveria conhecer: a de perder sua mãe. Sua vida foi atravessada por uma tragédia que jamais
+            deveria ter acontecido. Sua mãe foi arrancada de você da maneira mais cruel, e o mundo que você conhecia
+            nunca mais poderia ser exatamente o mesmo.</p>
+
+          <p>E penso em como deve ser difícil ter tantas lembranças de alguém que você gostaria de continuar tendo por
+            perto. Porque perder uma mãe não dói apenas no dia em que ela parte. Dói nos aniversários, nas conquistas,
+            nas perguntas que ficaram sem resposta. Dói quando acontece alguma coisa boa e aquela pessoa com quem você
+            gostaria de compartilhar já não está ali.</p>
+
+          <p>Eu não sei como foram todos esses momentos para você, Ruth. Não sei quantas vezes sentiu falta dela ou
+            quantas coisas gostaria de lhe contar. Mas sei que você merecia ter tido muito mais tempo.</p>
+
         </article>
 
+
+        <!-- PÁGINA 3 — AQUELE QUE NÃO DEVE SER NOMEADO -->
+
         <article class="pagina" data-pagina="3" aria-labelledby="titulo-pagina-3" hidden>
-          <p class="pagina-etiqueta">Último capítulo</p>
-          <h2 id="titulo-pagina-3">O próximo capítulo é seu</h2>
-          <p>Que você nunca perca a curiosidade, a coragem de recomeçar e a capacidade de se encantar.</p>
-          <p>Se esta carta fez você sorrir, então ela já cumpriu sua missão.</p>
-          <p class="assinatura">Com carinho,<br>Seu nome aqui ✧</p>
+
+          <p class="pagina-etiqueta">Capítulo III</p>
+          <h2 id="titulo-pagina-3">Aquele que não deve ser nomeado</h2>
+
+          <p>No mundo de Harry, existia um homem tão cruel que as pessoas tinham medo até de pronunciar seu nome. Na sua
+            história, também existiu alguém que deixou marcas profundas. Alguém que deveria ter cuidado de você, mas
+            acabou sendo responsável pela maior dor da sua história. E, assim como no mundo bruxo, prefiro que ele
+            permaneça sem nome aqui.</p>
+
+          <p>Esta carta não será sobre ele. Seu nome não merece ocupar o espaço que pertence à sua vida, à memória da
+            sua mãe e ao futuro que ainda está diante de você. Não quero que, ao olhar para sua vida, você enxergue
+            primeiro aquilo que ele fez. Quero que enxergue a menina que existia antes de tudo acontecer, as lembranças
+            que guarda da sua mãe, a pessoa que você se tornou e tudo o que ainda poderá viver.</p>
+
+          <p>Porque existe algo que precisamos lembrar: Harry não era extraordinário porque havia sofrido. E você também
+            não é. Nenhum sofrimento torna alguém mais merecedor de amor, e nenhuma criança deveria precisar demonstrar
+            coragem para simplesmente continuar vivendo. <strong>Você não precisava ter sido forte. Merecia ter sido
+              protegida.</strong></p>
+
+          <p>Mas, mesmo depois de tudo, sua história continuou. E é por isso que, se Hogwarts tivesse registrado seu
+            nome em seus livros, talvez você também fosse conhecida como <strong>a garota que sobreviveu</strong>.</p>
+
         </article>
+
+
+        <!-- PÁGINA 4 — SEU CAMINHO PARA HOGWARTS -->
+
+        <article class="pagina" data-pagina="4" aria-labelledby="titulo-pagina-4" hidden>
+
+          <p class="pagina-etiqueta">Capítulo IV</p>
+          <h2 id="titulo-pagina-4">Seu próprio caminho para Hogwarts</h2>
+
+          <p>Uma das coisas mais legais na história de Harry é o momento em que ele descobre Hogwarts. Pela primeira
+            vez, aquele menino que havia passado tantos anos se sentindo sozinho encontrou um lugar onde podia fazer
+            amigos, rir, aprender, errar e ser amado. Hogwarts não apagou a ausência dos pais dele. Nenhum lugar poderia
+            fazer isso. Mas mostrou a Harry que, apesar de tudo o que havia perdido, ainda existiam coisas boas
+            esperando por ele.</p>
+
+          <p>Você nunca recebeu uma carta te convidando para estudar em um castelo. Nunca pegou o Expresso de Hogwarts
+            ou atravessou a Plataforma Nove e Três Quartos. Mas, aos dezesseis anos, você também encontrou uma maneira
+            de sair em busca de uma vida diferente. Foi morar com sua "amiga", começou a experimentar a liberdade de
+            fazer suas próprias escolhas e pôde viver alegrias que merecia ter conhecido muito antes.</p>
+
+          <p>Gosto de pensar que aquela foi, de alguma maneira, a sua chegada a Hogwarts. Não havia um castelo, um salão
+            cheio de velas ou pessoas fazendo magia com varinhas. Mas havia a possibilidade de construir dias mais
+            leves, de descobrir o mundo longe de tantas dificuldades e de conhecer a felicidade nas coisas simples. E
+            imagino o quanto deve ter sido importante perceber que a vida também podia ser boa.</p>
+
+          <p>Hoje, você tem sua própria casa, seu trabalho, suas responsabilidades e seus planos. E eu espero, de
+            coração, que cada vez mais a sua vida seja feita de escolhas suas. Que você tenha liberdade para conhecer
+            lugares, fazer planos, amar, mudar de ideia e descobrir quem deseja ser. Porque há tanta coisa bonita que
+            você ainda merece viver, Ruth. Tanta coisa.</p>
+
+        </article>
+
+
+        <!-- PÁGINA 5 — A FAMÍLIA -->
+
+        <article class="pagina" data-pagina="5" aria-labelledby="titulo-pagina-5" hidden>
+
+          <p class="pagina-etiqueta">Capítulo V</p>
+          <h2 id="titulo-pagina-5">A família que encontramos pelo caminho</h2>
+
+          <p>Harry perdeu seus pais, mas encontrou nos Weasley uma família que o recebeu de braços abertos. Molly
+            Weasley nunca tentou ocupar o lugar de Lily. Ela simplesmente amou Harry, preocupou-se com ele, cuidou dele
+            e fez questão de que soubesse que tinha para onde voltar. E isso sempre me fez pensar em como o amor pode
+            chegar à nossa vida de maneiras inesperadas.</p>
+
+          <p>Ruth, você tem seus irmãos. Sei que a vida nem sempre permitiu que vocês estivessem tão próximos quanto
+            poderiam, mas eu fico muito feliz que, de alguma forma, essa proximidade foi possível e que você consegue
+            vê-los crescer. Há tantas histórias que vocês ainda podem compartilhar, lembranças que podem construir e
+            tantas oportunidades de encontrar apoio uns nos outros.</p>
+
+          <p>Porque família não é apenas aquilo que a vida nos entrega no começo. Também pode ser aquilo que o amor nos
+            permite construir depois. E você merece ter pessoas com quem dividir não apenas suas dificuldades, mas
+            principalmente suas alegrias.</p>
+
+        </article>
+
+
+        <!-- PÁGINA 6 — SEMPRE HAVERÁ UM LUGAR PARA VOCÊ -->
+
+        <article class="pagina" data-pagina="6" aria-labelledby="titulo-pagina-6" hidden>
+
+          <p class="pagina-etiqueta">Capítulo VI</p>
+          <h2 id="titulo-pagina-6">Sempre haverá um lugar para você</h2>
+
+          <p>Eu não fui a mãe que cuidou de você quando era pequena. Não acompanhei seus primeiros passos, não estive
+            presente nas suas primeiras descobertas e não tive a oportunidade de protegê-la nos momentos em que você
+            mais precisou. E jamais desejaria ocupar o lugar da sua mãe. Ela é sua mãe. Sempre será. O amor que existe
+            entre vocês pertence às duas, e nem a morte pode tirar isso.</p>
+
+          <p>Mas, quando seus irmãos passaram a fazer parte da minha vida, você também passou a fazer parte dela. E,
+            mesmo que eu não tenha me tornado sua mãe, isso nunca me impediu de olhar para você com o carinho de quem
+            também a considera uma filha. Eu me importo com você, Ruth. Quero saber se está bem, se está feliz, se tem
+            se cuidado. Quero ver suas conquistas, conhecer seus planos e saber que você tem pessoas com quem pode
+            contar.</p>
+
+        </article>
+
+
+        <!-- PÁGINA 7 — CONTINUAÇÃO DA CARTA -->
+
+        <article class="pagina" data-pagina="7" aria-label="Sempre haverá um lugar para você, continuação" hidden>
+
+          <p class="pagina-etiqueta">Capítulo VI — Continuação</p>
+
+          <p>Queria que a vida tivesse sido mais gentil com você. Queria que não tivesse precisado conhecer tão cedo a
+            crueldade que existe no mundo. Se pudesse, teria poupado aquela menina de catorze anos de tanta dor. Mas não
+            posso mudar o que aconteceu. Não posso devolver sua mãe, nem recuperar os anos em que você precisou aprender
+            a viver sem ela. O que posso fazer é estar aqui, hoje, e oferecer o carinho que tenho por você, sem exigir
+            nada em troca.</p>
+
+          <p>Harry passou boa parte da vida acreditando que precisava enfrentar tudo sozinho. Mas, aos poucos, descobriu
+            que tinha pessoas dispostas a permanecer ao seu lado, mesmo nos momentos mais difíceis. Quero que você
+            também saiba disso. Você não precisa conquistar o direito de ser amada, nem ser forte o tempo inteiro para
+            merecer o cuidado de alguém. E, se algum dia precisar de companhia, de um abraço, de uma conversa ou
+            simplesmente de um lugar onde possa se sentir acolhida, quero que saiba que pode contar comigo.</p>
+
+        </article>
+
+
+        <!-- PÁGINA 8 — CONCLUSÃO -->
+
+        <article class="pagina" data-pagina="8" aria-label="Conclusão da carta para Ruth" hidden>
+
+          <p class="pagina-etiqueta">Capítulo VI — Conclusão</p>
+
+          <p>O Chapéu Seletor provavelmente encontraria em você muitas das qualidades da Grifinória. Mas, se pudesse lhe
+            desejar alguma coisa, eu não pediria que fosse ainda mais corajosa. <strong>Eu pediria que a vida finalmente
+              lhe permitisse descansar dessa coragem.</strong> Que pudesse viver muitos anos de tranquilidade, de amor e
+            de felicidade. Que conhecesse a paz de acordar sem medo, de estar perto de quem ama e de sentir que pertence
+            a algum lugar.</p>
+
+          <p>Harry ficou conhecido como o menino que sobreviveu. E você, minha querida Ruth, também é uma garota que
+            sobreviveu. Mas meu maior desejo é que a sua vida não seja lembrada apenas por tudo o que precisou superar.
+            Quero que você tenha tantas histórias felizes para contar que, um dia, quando olhar para trás, consiga
+            reconhecer muito mais do que a dor.</p>
+
+          <p><strong>Quero que você viva, Ruth.</strong></p>
+
+          <p>Que viva muito. Que ame muito. Que seja amada. Que encontre motivos para sorrir até nos dias mais comuns. E
+            que nunca se esqueça de que, nesta família, SEMPRE haverá um lugar para você.</p>
+
+          <p class="assinatura">
+            <em>Com todo o amor, Molly... Ops Lorena!</em>
+          </p>
+
+        </article>
+
 
         <div class="ornamento ornamento-inferior" aria-hidden="true">✦ ❧ ✦</div>
       </div>
 
       <nav class="navegacao" aria-label="Navegação entre páginas da carta">
         <button id="anterior" class="botao-navegacao" type="button" disabled>← Anterior</button>
-        <span id="contador" class="contador" aria-live="polite">Página 1 de 3</span>
+        <span id="contador" class="contador" aria-live="polite">Página 1 de 8</span>
         <button id="proxima" class="botao-navegacao" type="button">Próxima →</button>
       </nav>
     </section>
