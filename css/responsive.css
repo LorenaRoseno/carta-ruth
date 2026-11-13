@@ -1,4 +1,3 @@
-
 /* ========== 1. DISPOSITIVOS MÓVEIS ========== */
 
 @media (max-width: 520px) {
@@ -31,11 +30,9 @@
     /* Área de leitura */
 
     .leitura {
-        width: min(
-            100%,
-            450px,
-            calc((100dvh - 110px) * 0.5625)
-        );
+        width: min(100%,
+                450px,
+                calc((100dvh - 110px) * 0.5625));
 
         margin-inline: auto;
     }
@@ -141,12 +138,16 @@
 
     /* Vídeo final */
 
+
     .video-final {
         display: block;
 
-        width: 100%;
-        height: min(50dvh, 410px);
-        min-height: 0;
+        width: auto;
+        max-width: 100%;
+
+        height: min(48dvh, 400px);
+        max-height: 100%;
+
         flex: none;
 
         margin: 8px auto 0;
@@ -157,9 +158,10 @@
         background: transparent;
         box-shadow: none;
 
-        object-fit: cover;
+        object-fit: contain;
         object-position: center;
     }
+
 
     /* Navegação */
 
